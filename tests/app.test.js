@@ -44,22 +44,6 @@ test('Test with custom input file', async () => {
         })
 })
 
-test('Test with wrong format file', async () => {
-    calculateBmi.setFile('./tests/empty.json')
-    var obj = {"underweight":0,"normal":0,
-               "overweight":0,
-               "moderately obese":0,
-               "severely obese":0,
-               "very severely obese":0}
-
-    await request(app)
-        .get('/' + '?size=1')
-        .expect(200)
-        .then((res) => {
-            expect(res.body.toString()).toMatch(obj.toString())
-        })
-})
-
 test('Test application with max load', async () => {
     calculateBmi.setFile('bigData.json')
     jest.setTimeout(20000)
